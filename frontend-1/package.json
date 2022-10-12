@@ -1,0 +1,19 @@
+{
+  "name": "frontend-1",
+  "version": "1.0.0",
+  "description": "frontend-1",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yutsuo/1SCJRBB-Microservices.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yutsuo/1SCJRBB-Microservices/issues"
+  },
+  "homepage": "https://github.com/yutsuo/1SCJRBB-Microservices#readme"
+}
