@@ -8,7 +8,7 @@ colors.enable();
 
 const { Schema, model, connect } = mongoose;
 
-const mongoConnection: string = `mongodb://${CONFIG.DB.MONGODB_USER}:${CONFIG.DB.MONGODB_PASS}@${CONFIG.DB.MONGODB_HOST}:${CONFIG.DB.MONGODB_PORT}/store?authSource=admin`;
+const mongoConnection: string = `mongodb://${CONFIG.DB.MONGODB_USER}:${CONFIG.DB.MONGODB_PASS}@${CONFIG.DB.MONGODB_HOST}:${CONFIG.DB.MONGODB_PORT}/${CONFIG.DB.MONGODB_DB}?authSource=admin`;
 
 const docSchema = new Schema<any>({}, { strict: false });
 const Doc = model<any>("Document", docSchema);
