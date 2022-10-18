@@ -11,6 +11,18 @@ services:
     networks:
       - backend
 
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: teste
+      POSTGRES_USER: teste
+      POSTGRES_DB: teste
+    ports:
+      - 5432:5432
+    networks:
+      - backend
+
 networks:
   backend:
     driver: bridge
