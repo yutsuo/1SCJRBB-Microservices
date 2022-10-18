@@ -1,0 +1,17 @@
+node_modules
+.vscode
+db.sqlite
+.env
+db.sqlite
+test-report.xml
+target
+.scannerworks
+.scannerwork
+coverage
+logs/**
+.env
+.idea
+globalConfig.json
+globalConfig.json
+debug.log
+package-lock.json

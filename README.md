@@ -11,3 +11,12 @@
 |FRONT END| + 2 PONTOS|
 |INTEGRAÇÃO TEAMS| + 1 PONTO|
 |PIPELINE CI/CD| + 1 PONTO|
+
+
+
+Alterações no BDD 
+
+- Criado um micro serviço para trabalhar com a autenticação
+
+- Serviço de gerenciamento renomeado para boletos 
+

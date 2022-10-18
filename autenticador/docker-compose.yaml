@@ -1,0 +1,19 @@
+version: "3.7"
+
+services:
+  gateway:
+    image: autenticador
+    container_name: autenticador
+    build: .
+    ports:
+      - 3000:3000
+    command: "npm start"
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.203.192/27
