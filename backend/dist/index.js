@@ -5,7 +5,7 @@ import CONFIG from "./config/config.js";
 dotenv.config();
 colors.enable();
 const { Schema, model, connect } = mongoose;
-const mongoConnection = `mongodb://${CONFIG.DB.MONGODB_USER}:${CONFIG.DB.MONGODB_PASS}@${CONFIG.DB.MONGODB_HOST}:${CONFIG.DB.MONGODB_PORT}/store?authSource=admin`;
+const mongoConnection = `mongodb://${CONFIG.DB.MONGODB_USER}:${CONFIG.DB.MONGODB_PASS}@${CONFIG.DB.MONGODB_HOST}:${CONFIG.DB.MONGODB_PORT}/${CONFIG.DB.MONGODB_DB}?authSource=admin`;
 const docSchema = new Schema({}, { strict: false });
 const Doc = model("Document", docSchema);
 async function mongoConnectionTest() {
