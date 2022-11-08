@@ -5,6 +5,16 @@ services:
     image: autenticador
     container_name: autenticador
     build: .
+    depends_on:
+      - db
+    environment:
+      HOST_PG: db
+      PASSWORD_PG: teste
+      USER_PG: teste
+      DATABASE_PG: teste
+      PORTA_PG: 5432
+      CHAVE_JWT: dsadjsdidsondsongds5485161sd1fsd3fdsf1dsf
+      APP_HOST: localhost:3000
     ports:
       - 3000:3000
     command: "npm start"

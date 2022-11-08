@@ -13,6 +13,30 @@ const getClient = async () => {
 };
 
 module.exports = {
+  iniciaBd: async () => {
+    return new Promise(async (resolve, reject) => {
+      const text = `  CREATE TABLE IF NOT EXISTS usuarios (
+        id SERIAL PRIMARY KEY,
+        nome VARCHAR(40) NOT NULL,
+        email VARCHAR(255) NOT NULL UNIQUE,
+        senhaHash VARCHAR(255) NOT NULL
+      )`;
+
+      const client = await getClient();
+      client.connect();
+      try {
+        await client.query(text);
+        console.log("Tabela de usuários criada com sucesso");
+        client.end();
+        resolve(true)
+      } catch (err) {
+        console.log(err.stack);
+        client.end();
+        reject(false)
+      }
+    });
+  },
+
   adiciona: async (usuario) => {
     return new Promise(async (resolve, reject) => {
       try {
@@ -105,5 +129,4 @@ module.exports = {
       }
     });
   },
-
 };
