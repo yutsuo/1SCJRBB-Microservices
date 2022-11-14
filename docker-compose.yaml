@@ -1,14 +1,14 @@
 version: "3.7"
 
 services:
-  gateway:
+  autenticador:
     image: autenticador
     container_name: autenticador
     build: ./autenticador
     depends_on:
-      - db
+      - db_usuarios
     environment:
-      HOST_PG: db
+      HOST_PG: db_usuarios
       PASSWORD_PG: teste
       USER_PG: teste
       DATABASE_PG: teste
@@ -21,7 +21,27 @@ services:
     networks:
       - backend
 
-  db:
+  boletos:
+    image: boletos
+    container_name: boletos
+    build: ./boletos
+    depends_on:
+      - autenticador
+    environment:
+      HOST_PG: db_usuarios
+      PASSWORD_PG: teste
+      USER_PG: teste
+      DATABASE_PG: teste
+      PORTA_PG: 5432
+      CHAVE_JWT: dsadjsdidsondsongds5485161sd1fsd3fdsf1dsf
+      APP_HOST: localhost:3000
+    ports:
+      - 3001:3000
+    command: "npm start"
+    networks:
+      - backend
+
+  db_usuarios:
     image: postgres
     restart: always
     environment:
@@ -30,6 +50,17 @@ services:
       POSTGRES_DB: teste
     ports:
       - 5432:5432
+    networks:
+      - backend
+
+  db_boletos:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: boletos
+    ports:
+      - 3306:3306
     networks:
       - backend
 
