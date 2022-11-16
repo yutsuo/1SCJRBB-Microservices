@@ -16,7 +16,9 @@ const swaggerDefinition = {
 
 const options = {
   swaggerDefinition,
-  apis: [path.resolve(path.join("src", "usuarios")) + "/**/*.js"],
+  apis: [
+    // path.resolve(path.join("src", "usuarios")) + "/**/*.js"
+  ],
 };
 
 const swaggerSpec = swaggerJsdoc(options);

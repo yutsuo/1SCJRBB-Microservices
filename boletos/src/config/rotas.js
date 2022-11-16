@@ -1,4 +1,3 @@
-const usuarios = require("../usuarios");
 const swagger = require("../swagger");
 
 module.exports = (app) => {
@@ -10,6 +9,5 @@ module.exports = (app) => {
     res.status(200).json({ status: "Success" });
   });
 
-  usuarios.rotas(app);
   swagger.rotas(app);
 };
