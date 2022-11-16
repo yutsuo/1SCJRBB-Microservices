@@ -26,15 +26,14 @@ services:
     container_name: boletos
     build: ./boletos
     depends_on:
-      - autenticador
+      - db_boletos
     environment:
-      HOST_PG: db_usuarios
-      PASSWORD_PG: teste
-      USER_PG: teste
-      DATABASE_PG: teste
-      PORTA_PG: 5432
-      CHAVE_JWT: dsadjsdidsondsongds5485161sd1fsd3fdsf1dsf
-      APP_HOST: localhost:3000
+      HOST_MYSQL: db_boletos
+      PASSWORD_MYSQL: root
+      USER_MYSQL: root
+      DATABASE_MYSQL: boletos
+      PORTA_MYSQL: 3306
+      APP_HOST: localhost:3001
     ports:
       - 3001:3000
     command: "npm start"
