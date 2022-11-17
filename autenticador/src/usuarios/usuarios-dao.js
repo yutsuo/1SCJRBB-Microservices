@@ -28,11 +28,11 @@ module.exports = {
         await client.query(text);
         console.log("Tabela de usuários criada com sucesso");
         client.end();
-        resolve(true)
+        resolve(true);
       } catch (err) {
         console.log(err.stack);
         client.end();
-        reject(false)
+        reject(false);
       }
     });
   },
@@ -54,6 +54,8 @@ module.exports = {
           console.log(err.stack);
           client.end();
         }
+
+        resolve("Usuário adicionado com sucesso");
       } catch (error) {
         console.log(error);
 
@@ -114,11 +116,11 @@ module.exports = {
         const client = await getClient();
         client.connect();
 
-        const text = "SELECT * from usuarios";
+        const text = "SELECT  id, nome, email from usuarios";
 
         try {
           const res = await client.query(text);
-          console.log(res.rows[0]);
+
           resolve(res.rows);
         } catch (err) {
           console.log(err.stack);

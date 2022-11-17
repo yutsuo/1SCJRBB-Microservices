@@ -25,7 +25,7 @@ module.exports = (app) => {
    *       consumes:
    *         - "application/json"
    *       produces:
-   *         - "application/json"
+   *         - "application/json" 
    *
    */
 
@@ -64,5 +64,5 @@ module.exports = (app) => {
      *                        username:
      *                          type: string
      */
-    .get(usuariosControlador.lista);
+    .get(middlewaresAutenticacao.bearer, usuariosControlador.lista);
 };
