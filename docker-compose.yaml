@@ -52,16 +52,16 @@ services:
     networks:
       - backend
 
-  # db_boletos:
-  #   image: mysql
-  #   restart: always
-  #   environment:
-  #     MYSQL_ROOT_PASSWORD: root
-  #     MYSQL_DATABASE: boletos
-  #   ports:
-  #     - 3306:3306
-  #   networks:
-  #     - backend
+  db_boletos:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: boletos
+    ports:
+      - 3306:3306
+    networks:
+      - backend
 
 networks:
   backend:

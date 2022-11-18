@@ -31,6 +31,8 @@ module.exports = (app) => {
 
   app.route("/usuario/login").post(middlewaresAutenticacao.local, usuariosControlador.login);
 
+  app.route("/usuario/autenticar").post(middlewaresAutenticacao.bearer, usuariosControlador.autenticar);
+
   app
     .route("/usuario")
     .post(usuariosControlador.adiciona)
