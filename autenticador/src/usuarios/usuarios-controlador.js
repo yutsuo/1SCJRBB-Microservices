@@ -1,8 +1,7 @@
 const Usuario = require("./usuarios-modelo");
 const { InvalidArgumentError, InternalServerError } = require("../erros");
-const passport = require("passport");
-
 const jwt = require("jsonwebtoken");
+const notificarUsuarioCadastradoService = require("../notificador/services/notificarUsuarioCadastrado.service");
 
 function criaTokenJWT(usuario) {
   const payload = {
@@ -26,6 +25,11 @@ module.exports = {
       await usuario.adicionaSenha(senha);
 
       await usuario.adiciona();
+
+      console.log(process.env.HOST_NOTIFICADOR);
+      console.log(process.env.HOST_PG);
+
+      notificarUsuarioCadastradoService.notificar("Novo usuário cadastrado", `${nome} - ${email}`);
 
       res.status(201).json();
     } catch (erro) {

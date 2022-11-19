@@ -1,44 +1,56 @@
 version: "3.7"
 
 services:
-  # autenticador:
-  #   image: autenticador
-  #   container_name: autenticador
-  #   build: ./autenticador
-  #   depends_on:
-  #     - db_usuarios
-  #   environment:
-  #     HOST_PG: db_usuarios
-  #     PASSWORD_PG: teste
-  #     USER_PG: teste
-  #     DATABASE_PG: teste
-  #     PORTA_PG: 5432
-  #     CHAVE_JWT: dsadjsdidsondsongds5485161sd1fsd3fdsf1dsf
-  #     APP_HOST: localhost:3000
-  #   ports:
-  #     - 3000:3000
-  #   command: "npm start"
-  #   networks:
-  #     - backend
+  autenticador:
+    image: autenticador
+    container_name: autenticador
+    build: ./autenticador
+    depends_on:
+      - db_usuarios
+      - notificador
+    environment:
+      HOST_PG: db_usuarios
+      PASSWORD_PG: root
+      USER_PG: root
+      DATABASE_PG: usuarios
+      PORTA_PG: 5432
+      CHAVE_JWT: dsadjsdidsondsongds5485161sd1fsd3fdsf1dsf
+      APP_HOST: localhost:3000
+      HOST_NOTIFICADOR: notificador:4000
+    ports:
+      - 3000:3000
+    command: "npm start"
+    networks:
+      - backend
 
-  # boletos:
-  #   image: boletos
-  #   container_name: boletos
-  #   build: ./boletos
-  #   depends_on:
-  #     - db_boletos
-  #   environment:
-  #     HOST_MYSQL: db_boletos
-  #     PASSWORD_MYSQL: root
-  #     USER_MYSQL: root
-  #     DATABASE_MYSQL: boletos
-  #     PORTA_MYSQL: 3306
-  #     APP_HOST: localhost:3001
-  #   ports:
-  #     - 3001:3000
-  #   command: "npm start"
-  #   networks:
-  #     - backend
+  notificador:
+    build: ./notificador
+    environment:
+      HOOK_USUARIOS: https://fiapcom.webhook.office.com/webhookb2/8cf1d42e-933f-4b80-9131-bb37825418c5@11dbbfe2-89b8-4549-be10-cec364e59551/IncomingWebhook/03e716e421194668b84798c49d6792d9/d608e7ec-30ea-4201-982c-decd644ea708
+    ports:
+      - 4000:4000
+    command: "npm start"
+    networks:
+      - backend
+
+  boletos:
+    image: boletos
+    container_name: boletos
+    build: ./boletos
+    depends_on:
+      - db_boletos
+    environment:
+      HOST_MYSQL: db_boletos
+      PASSWORD_MYSQL: root
+      USER_MYSQL: root
+      DATABASE_MYSQL: boletos
+      PORTA_MYSQL: 3306
+      APP_HOST: localhost:3001
+    ports:
+      - 3001:3000
+    command: "npm start"
+    networks:
+      - backend
 
   db_usuarios:
     image: postgres

@@ -1,0 +1,22 @@
+version: "3.7"
+
+services:
+  gateway:
+    image: ath-notificador
+    container_name: ath-notificador
+    build: .
+    ports:
+      - 3000:3000
+    links:
+      - iib-sidecar
+    command: "npm start"
+    networks:
+      - ath-motor-db-net
+
+
+networks:
+  ath-motor-db-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.203.192/27
