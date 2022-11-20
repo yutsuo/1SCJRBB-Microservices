@@ -12,8 +12,8 @@ const connection = () => {
 };
 exports.criaTabelaBoletos = async () => {
   return new Promise(async (resolve, reject) => {
+    let conn = await connection();
     try {
-      let conn = await connection();
       let sql = `CREATE TABLE if not exists boletos (
                     id MEDIUMINT NOT NULL AUTO_INCREMENT,
                     linha_digitavel CHAR(54) NOT NULL,
@@ -34,17 +34,19 @@ exports.criaTabelaBoletos = async () => {
     } catch (error) {
       console.log("TABELA BOLETOS - NAO CRIADA");
       reject(false);
+    } finally {
+      conn.end();
     }
   });
 };
 
 exports.insereBoleto = async (dadosBoleto) => {
   return new Promise(async (resolve, reject) => {
+    let conn = await connection();
     try {
       let dtVenc = dadosBoleto.vencimento.split("-");
       dataVencimento = new Date(dtVenc[2], dtVenc[1] - 1, dtVenc[0]);
 
-      let conn = await connection();
       let sql = `INSERT INTO boletos.boletos
       (linha_digitavel, beneficiario, valor, vencimento)
       VALUES(?, ?, ?, ?);`;
@@ -54,7 +56,7 @@ exports.insereBoleto = async (dadosBoleto) => {
         [dadosBoleto.linhaDigitavel, dadosBoleto.beneficiario, dadosBoleto.valor, dataVencimento],
         function (err, results, fields) {
           if (err) {
-            console.log("ERRO - Nao foi possivel criar a tabela BOLETOS");
+            reject(error);
           }
 
           resolve(results);
@@ -63,6 +65,75 @@ exports.insereBoleto = async (dadosBoleto) => {
     } catch (error) {
       console.log("TABELA BOLETOS - NAO CRIADA");
       reject(error);
+    } finally {
+      conn.end();
+    }
+  });
+};
+
+exports.buscaTodosBoletos = () => {
+  return new Promise(async (resolve, reject) => {
+    let conn = await connection();
+    try {
+      let sql = `SELECT id, linha_digitavel, beneficiario, valor, vencimento
+      FROM boletos.boletos;`;
+
+      conn.execute(sql, function (err, results, fields) {
+        if (err) {
+          reject(error);
+        }
+
+        resolve(results);
+      });
+    } catch (error) {
+      reject(error);
+    } finally {
+      conn.end();
+    }
+  });
+};
+
+exports.buscaBoletoPorId = (id) => {
+  return new Promise(async (resolve, reject) => {
+    let conn = await connection();
+    try {
+      let sql = `SELECT id, linha_digitavel, beneficiario, valor, vencimento
+      FROM boletos.boletos
+      WHERE id = ?`;
+
+      conn.execute(sql, [id], function (err, results, fields) {
+        if (err) {
+          reject(error);
+        }
+
+        resolve(results);
+      });
+    } catch (error) {
+      reject(error);
+    } finally {
+      conn.end();
+    }
+  });
+};
+
+exports.deletaBoletoPorId = (id) => {
+  return new Promise(async (resolve, reject) => {
+    let conn = await connection();
+    try {
+      let sql = `DELETE FROM boletos.boletos
+      WHERE id=?;`;
+
+      conn.execute(sql, [id], function (err, results, fields) {
+        if (err) {
+          reject(error);
+        }
+
+        resolve(results);
+      });
+    } catch (error) {
+      reject(error);
+    } finally {
+      conn.end();
     }
   });
 };

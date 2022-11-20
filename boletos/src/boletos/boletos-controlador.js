@@ -22,4 +22,51 @@ module.exports = {
       }
     }
   },
+
+  buscaBoletos: async (req, res) => {
+    try {
+      let retorno = null;
+      if (!req.query.id) {
+        retorno = await boletosDAO.buscaTodosBoletos();
+      } else {
+        retorno = await boletosDAO.buscaBoletoPorId(req.query.id);
+      }
+
+      res.status(200).json(retorno).send();
+    } catch (erro) {
+      console.log(erro);
+
+      if (erro instanceof InvalidArgumentError) {
+        res.status(422).json({ erro: erro.message });
+      } else if (erro instanceof InternalServerError) {
+        res.status(500).json({ erro: erro.message });
+      } else {
+        res.status(500).json({ erro: erro.message });
+      }
+    }
+  },
+
+  deletaBoleto: async (req, res) => {
+    try {
+      let retorno = null;
+      if (!req.body.id) {
+        res.status(422).json({ erro: "Deve ser informado um id para deletar o boleto" });
+      } else {
+        retorno = await boletosDAO.deletaBoletoPorId(req.body.id);
+
+        if (retorno) {
+          if (retorno.affectedRows === 0) {
+            res.status(422).json({ erro: "id não localizado" }).send();
+          } else {
+            res
+              .status(200)
+              .json({ message: `Excluído(s) ${retorno.affectedRows} registros` })
+              .send();
+          }
+        }
+      }
+    } catch (erro) {
+      console.log(erro);
+    }
+  },
 };
