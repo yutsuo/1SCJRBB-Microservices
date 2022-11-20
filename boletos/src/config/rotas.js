@@ -1,4 +1,5 @@
 const swagger = require("../swagger");
+const boletos = require("../boletos");
 
 module.exports = (app) => {
   app.get("/", (req, res) => {
@@ -10,4 +11,5 @@ module.exports = (app) => {
   });
 
   swagger.rotas(app);
+  boletos.rotas(app);
 };
