@@ -1,4 +1,5 @@
 const boletosDAO = require("./boletos-dao");
+const { InvalidArgumentError } = require("../erros");
 
 module.exports = {
   adiciona: async (req, res) => {
