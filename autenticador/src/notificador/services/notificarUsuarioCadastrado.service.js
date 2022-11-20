@@ -1,7 +1,5 @@
 const request = require("request");
 exports.notificar = (titulo, texto) => {
-  console.log("to aqui");
-
   const options = {
     method: "POST",
     url: `http://${process.env.HOST_NOTIFICADOR}/api/notificador/v1/notificar-cadastro-usuario`,
