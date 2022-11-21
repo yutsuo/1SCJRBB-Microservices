@@ -11,7 +11,7 @@ const swaggerDefinition = {
     description: pkg.description,
   },
   host: process.env.APP_HOST,
-  basePath: "/api",
+  basePath: "/",
 };
 
 const options = {

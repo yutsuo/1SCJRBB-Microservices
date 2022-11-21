@@ -2,39 +2,88 @@ const usuariosControlador = require("./usuarios-controlador");
 const middlewaresAutenticacao = require("./middlewares-autenticacao");
 
 module.exports = (app) => {
-  /**
-   * @swagger
-   *
-   * paths:
-   *   /usario/login:
-   *     post:
-   *       tags:
-   *         - "USUARIO"
-   *       summary: "Repassar endpoint para equipe do AIC/Selfie incluir no processo de criação de contexto do Grafeno"
-   *       operationId: "gruposAnalise"
-   *       consumes:
-   *         - "application/json"
-   *       produces:
-   *         - "application/json"
-        /usuario:
-   *      get:
-   *       tags:
-   *         - "AIC"
-   *       summary: "Repassar endpoint para equipe do AIC/Selfie incluir no processo de criação de contexto do Grafeno"
-   *       operationId: "gruposAnalise"
-   *       consumes:
-   *         - "application/json"
-   *       produces:
-   *         - "application/json" 
-   *
-   */
 
+      /**
+     * @swagger
+     *     paths:
+     *       /usuario/login:
+     *         post:
+     *          tags:
+     *            - "USUARIO"
+     *          summary: Exibe usuarios cadastrados
+     *          parameters:
+     *             - in: formData
+     *               name: email
+     *               schema:
+     *                 type: string
+     *                 example: 1
+     *               description: email do usuário
+     *             - in: formData
+     *               name: senha
+     *               schema:
+     *                 type: string
+     *               description: senha do usuário
+     *
+     *          responses:
+     *             '200':
+     *                description: array com os dados dos usuarios
+     *                content:
+     *                  application/json
+     *                schema:
+     *                  type: Array
+     *                  example: [{"id": 1,"nome": "pedro","email": "pedro@bb.com.br"}]
+     *             '401':
+     *                description: Não autorizado
+     *
+     */
   app.route("/usuario/login").post(middlewaresAutenticacao.local, usuariosControlador.login);
 
+  /**
+   * @swagger
+   *     paths:
+   *       /usuario/autenticar:
+   *         post:
+   *          tags:
+   *            - "USUARIO"
+   *          summary: Autentica um usuário
+   *          parameters:
+   *             - in: header
+   *               name: authorization
+   *               schema:
+   *                 type: Bearer token
+   *               description: Bearer token
+   *          responses:
+   *             '200':
+   *                description: Autorizado
+   *             '401':
+   *                description: Não autorizado
+   *
+   */
   app.route("/usuario/autenticar").post(middlewaresAutenticacao.bearer, usuariosControlador.autenticar);
 
   app
     .route("/usuario")
+    /**
+     * @swagger
+     *     paths:
+     *       /usuario:
+     *         post:
+     *          tags:
+     *            - "USUARIO"
+     *          summary: Cadastra um novo usuário
+     *          parameters:
+     *             - in: body
+     *               name: nome
+     *               schema:
+     *                 type: object
+     *                 example: {"nome": "pedro oliveira","email": "pedro@teste.com","senha": "aaaaaaa51551"}
+     *               description: objeto com os dados do usuário a serem cadastrados
+     *          responses:
+     *             '201':
+     *                description: Criado o usuário
+     *             '422':
+     *                description: Objeto inválido
+     */
     .post(usuariosControlador.adiciona)
     /**
      * @swagger
@@ -45,26 +94,29 @@ module.exports = (app) => {
      *            - "USUARIO"
      *          summary: Exibe usuarios cadastrados
      *          parameters:
-     *             #- in: query
-     *              # name: pacote
-     *              # schema:
-     *             #    type: string
-     *             #  description: Numero do pacote TIM
-     *          #   - in: query
-     *           #    name: sigla
-     *            #   schema:
-     *            #     type: string
-     *          #     description: Sigla responsável pelo pacote
+     *             - in: query
+     *               name: id
+     *               schema:
+     *                 type: number
+     *                 example: 1
+     *               description: id do usuário - se não informado retorna todos os usuários
+     *             - in: header
+     *               name: authorization
+     *               schema:
+     *                 type: Bearer token
+     *               description: Bearer token
+     *
      *          responses:
      *             '200':
-     *                description: JSON com os dados dos usuarios
+     *                description: array com os dados dos usuarios
      *                content:
-     *                  application/json:
-     *                    schema:
-     *                      type: object
-     *                      properties:
-     *                        username:
-     *                          type: string
+     *                  application/json
+     *                schema:
+     *                  type: Array
+     *                  example: [{"id": 1,"nome": "pedro","email": "pedro@bb.com.br"}]
+     *             '401':
+     *                description: Não autorizado
+     *
      */
     .get(middlewaresAutenticacao.bearer, usuariosControlador.lista);
 };

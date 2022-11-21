@@ -33,24 +33,25 @@ services:
     networks:
       - backend
 
-  # boletos:
-  #   image: boletos
-  #   container_name: boletos
-  #   build: ./boletos
-  #   depends_on:
-  #     - db_boletos
-  #   environment:
-  #     HOST_MYSQL: db_boletos
-  #     PASSWORD_MYSQL: root
-  #     USER_MYSQL: root
-  #     DATABASE_MYSQL: boletos
-  #     PORTA_MYSQL: 3306
-  #     APP_HOST: localhost:3001
-  #   ports:
-  #     - 3001:3000
-  #   command: "npm start"
-  #   networks:
-  #     - backend
+  boletos:
+    image: boletos
+    container_name: boletos
+    build: ./boletos
+    depends_on:
+      - db_boletos
+    environment:
+      HOST_MYSQL: db_boletos
+      PASSWORD_MYSQL: root
+      USER_MYSQL: root
+      DATABASE_MYSQL: boletos
+      PORTA_MYSQL: 3306
+      APP_HOST: localhost:3001
+      HOST_AUTENTICADOR: autenticador:3000
+    ports:
+      - 3001:3001
+    command: "npm start"
+    networks:
+      - backend
 
   db_usuarios:
     image: postgres

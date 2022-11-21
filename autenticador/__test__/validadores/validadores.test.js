@@ -7,36 +7,6 @@ describe("Testando os validadores", () => {
     done();
   });
 
-  //   it("Valor nulo para um campo não nulo", async (done) => {
-  //     let retorno;
-
-  //     try {
-  //       retorno = validadoresComuns.campoStringNaoNulo(null, "teste");
-  //     } catch (error) {
-  //       console.log(error);
-
-  //       retorno = error;
-  //     }
-
-  //     expect(retorno.toString()).toEqual("InvalidArgumentError: É necessário preencher o campo teste!");
-  //     done();
-  //   });
-
-  //   it("Valor não nulo para um campo não nulo", async (done) => {
-  //     let retorno;
-
-  //     try {
-  //       retorno = validadoresComuns.campoStringNaoNulo("ola", "teste");
-  //     } catch (error) {
-  //       console.log(error);
-
-  //       retorno = error;
-  //     }
-
-  //     expect(retorno).toBe(undefined);
-  //     done();
-  //   });
-
   it("Campo com tamanho inferior ao mínimo", async (done) => {
     let retorno;
 

@@ -11,13 +11,13 @@ const swaggerDefinition = {
     description: pkg.description,
   },
   host: process.env.APP_HOST,
-  basePath: "/api",
+  basePath: "/",
 };
 
 const options = {
   swaggerDefinition,
   apis: [
-    // path.resolve(path.join("src", "usuarios")) + "/**/*.js"
+    path.resolve(path.join("src", "boletos")) + "/**/*.js"
   ],
 };
 
