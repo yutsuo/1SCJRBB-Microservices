@@ -1,22 +1,36 @@
 # 1SCJRBB-Microservices
 
-| ATIVIDADE | PONTUAÇÃO |
-| :-------- | --------: |
-|UM MICROSERVIÇO COM AÇÕES CRUD| 2 PONTOS (+ 1 PONTO / MICROSERVIÇO) |
-|TESTES (UNITÁRIOS + INTEGRAÇÃO + UI)| + 1  OU + 2 OU + 3 PONTOS|
-|USO DE BANCO DE DADOS| + 2 PONTOS|
-|DEPLOY VIA DOCKER| + 1 PONTO|
-|COMUNICAÇÃO SINCRONA API COM SWAGGER| + 1 PONTOS|
-|COMUNICAÇÃO ASSINCRONA EVENTOS| + 2 PONTOS|
-|FRONT END| + 2 PONTOS|
-|INTEGRAÇÃO TEAMS| + 1 PONTO|
-|PIPELINE CI/CD| + 1 PONTO|
+
+## VIDEO
+
+No youtube [https://youtu.be/iYpLjoM98wQ](https://youtu.be/iYpLjoM98wQ)
+
+Projeto consiste em 3 micro serviços
+
+- Autenticador - Responsável pela autenticação de usuários
+    - Trabalha com um banco de dados Postgres
+
+- Boletos - Responsável pelas transações em boletos
+    - Trabalha com um banco de dados Mysql
+
+- Notificador - Responsável por notificar o TEAMS quando ocorrer um evento de interesse
+    - Sem banco de dados 
+    - Integração com o Teams
+
+## Para executar o projeto
+
+`docker-compose up --bulild`
 
 
+- Todos os projetos sobem com swagger
+    - Para acessar o swagger /api-docs
 
-Alterações no BDD 
+## Tecnologias utilizadas
 
-- Criado um micro serviço para trabalhar com a autenticação
+nodejs
+postgressql
+mysql
+docker
+swagger
 
-- Serviço de gerenciamento renomeado para boletos 
 

@@ -10,7 +10,7 @@ module.exports = (app) => {
      *         post:
      *          tags:
      *            - "USUARIO"
-     *          summary: Exibe usuarios cadastrados
+     *          summary: Retorna o token para utilização pelo usuário
      *          parameters:
      *             - in: formData
      *               name: email
@@ -25,13 +25,8 @@ module.exports = (app) => {
      *               description: senha do usuário
      *
      *          responses:
-     *             '200':
-     *                description: array com os dados dos usuarios
-     *                content:
-     *                  application/json
-     *                schema:
-     *                  type: Array
-     *                  example: [{"id": 1,"nome": "pedro","email": "pedro@bb.com.br"}]
+     *             '204':
+     *                description: No Header retorna o Token do usuário
      *             '401':
      *                description: Não autorizado
      *
