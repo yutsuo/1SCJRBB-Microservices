@@ -24,6 +24,8 @@ services:
       - backend
 
   notificador:
+    image: notificador
+    container_name: notificador
     build: ./notificador
     environment:
       HOOK_USUARIOS: https://fiapcom.webhook.office.com/webhookb2/8cf1d42e-933f-4b80-9131-bb37825418c5@11dbbfe2-89b8-4549-be10-cec364e59551/IncomingWebhook/03e716e421194668b84798c49d6792d9/d608e7ec-30ea-4201-982c-decd644ea708
@@ -55,6 +57,7 @@ services:
 
   db_usuarios:
     image: postgres
+    container_name: db_usuarios
     restart: always
     environment:
       POSTGRES_PASSWORD: root
@@ -67,6 +70,7 @@ services:
 
   db_boletos:
     image: mysql
+    container_name: db_boletos
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root

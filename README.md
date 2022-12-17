@@ -19,7 +19,7 @@ Projeto consiste em 3 micro serviços
 
 ## Para executar o projeto
 
-`docker-compose up --bulild`
+`docker-compose up --build`
 
 
 - Todos os projetos sobem com swagger
