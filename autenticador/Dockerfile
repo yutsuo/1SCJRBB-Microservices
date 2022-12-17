@@ -14,6 +14,8 @@ COPY ./server.js .
 
 COPY ./src ./src
 
+COPY wait-and-run.sh .
+
 EXPOSE 3000
 
 CMD [ "npm", "run", "start" ]
