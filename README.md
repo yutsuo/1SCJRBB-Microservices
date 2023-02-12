@@ -10,7 +10,7 @@ No youtube [https://youtu.be/iYpLjoM98wQ](https://youtu.be/iYpLjoM98wQ)
 No youtube [https://youtu.be/7u5ptZkTYvM](https://youtu.be/7u5ptZkTYvM)
 
 
-Projeto consiste em 3 microserviços
+Aplicação consiste em 3 microserviços:
 
 - Autenticador - Responsável pela autenticação de usuários
     - Trabalha com um banco de dados Postgres
@@ -22,12 +22,12 @@ Projeto consiste em 3 microserviços
     - Sem banco de dados 
     - Integração com o Teams
 
-## Para executar o projeto
+## Para executar a aplicação
 
 `docker-compose up --build`
 
 
-- Todos os projetos sobem com swagger
+- Todos os serviços sobem com swagger
     - Para acessar o swagger /api-docs
 
 ## Tecnologias utilizadas
@@ -37,3 +37,5 @@ Projeto consiste em 3 microserviços
 - mysql
 - docker
 - swagger
+
+## Obs.: Aplicação foi adaptada para rodar no ambiente Microsoft Azure.
