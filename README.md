@@ -1,11 +1,16 @@
-# 1SCJRBB-Microservices
+# 1SCJRBB - Microservices / Cloud Development (Azure)
 
 
-## VIDEO
+## Video Microservices
 
 No youtube [https://youtu.be/iYpLjoM98wQ](https://youtu.be/iYpLjoM98wQ)
 
-Projeto consiste em 3 micro serviços
+## Video Cloud Development (Azure)
+
+No youtube [https://youtu.be/7u5ptZkTYvM](https://youtu.be/7u5ptZkTYvM)
+
+
+Projeto consiste em 3 microserviços
 
 - Autenticador - Responsável pela autenticação de usuários
     - Trabalha com um banco de dados Postgres
@@ -32,5 +37,3 @@ postgressql
 mysql
 docker
 swagger
-
-
