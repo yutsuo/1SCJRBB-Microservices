@@ -10,7 +10,7 @@ No youtube [https://youtu.be/iYpLjoM98wQ](https://youtu.be/iYpLjoM98wQ)
 No youtube [https://youtu.be/7u5ptZkTYvM](https://youtu.be/7u5ptZkTYvM)
 
 
-Aplicação consiste em 3 microserviços:
+## Aplicação consiste em 3 microserviços:
 
 - Autenticador - Responsável pela autenticação de usuários
     - Trabalha com um banco de dados Postgres
@@ -38,4 +38,6 @@ Aplicação consiste em 3 microserviços:
 - docker
 - swagger
 
-## Obs.: Aplicação foi adaptada para rodar no ambiente Microsoft Azure.
+## Observação
+
+- Aplicação foi adaptada para rodar no ambiente Microsoft Azure.
