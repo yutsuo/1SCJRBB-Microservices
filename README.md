@@ -32,8 +32,8 @@ Projeto consiste em 3 microserviços
 
 ## Tecnologias utilizadas
 
-nodejs
-postgressql
-mysql
-docker
-swagger
+- nodejs
+- postgressql
+- mysql
+- docker
+- swagger
